@@ -33,11 +33,11 @@ export const MainModule = ({ history }) => {
         )
         || !store.getState().location
       ) {
-        const locationResponse = await fetch('http://api.sypexgeo.net/');
+        const locationResponse = await fetch('https://api.sypexgeo.net/');
         const locationData = await locationResponse.json();
         const lang = locationData.country.iso;
 
-        const weatherResponse = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${locationData.country.capital_en}&lang=${lang}&appid=${WEATHER_API_KEY}`);
+        const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${locationData.country.capital_en}&lang=${lang}&appid=${WEATHER_API_KEY}`);
         const weatherData = await weatherResponse.json();
 
         const imagesResponse = await fetch(`https://api.unsplash.com/search/photos?page=1&query=${locationData.country.capital_en}${IMAGES_API_KEY}`);
@@ -90,6 +90,7 @@ export const MainModule = ({ history }) => {
         <img
           src={weather.icon}
           className={styles.weatherIcon}
+          alt="weather icon"
         />
       </div>
 
